@@ -3,7 +3,7 @@
 ```bash
       sudo apt-get install ffmpeg 
 ```
-### Windowns
+### Windows
 [Site FFmpeg](https://ffmpeg.org/download.html#build-windows)
 
 ## Instalar dependências
