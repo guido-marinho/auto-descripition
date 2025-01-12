@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import ffmpeg from "fluent-ffmpeg";
+import { transcribeAudio } from "./services/genai";
 
 const inputFolder = "./input";
 const outputFolder = "./output";
@@ -39,9 +40,25 @@ const handleNewFile = async (filePath: string) => {
     if (fs.existsSync(filePath)) {
       fs.renameSync(filePath, videoOutputPath);
       console.log("Video file moved", videoOutputPath);
+    } else {
+      console.log("Video file not found", filePath);
     }
   } catch (error) {
-    console.log("Error converting video to audio", error);
+    console.error("Error converting video to audio", error);
+  }
+
+  try {
+    const transcriptionFilePath = path.join(
+      outputFilePath,
+      "transcription.txt"
+    );
+
+    console.log("Transcribing audio", audioPath);
+    const transcription = await transcribeAudio(audioPath);
+    fs.writeFileSync(transcriptionFilePath, transcription);
+    console.log("TranscriptionText", transcription);
+  } catch (error) {
+    console.error("Error transcribing audio", error);
   }
 };
 
