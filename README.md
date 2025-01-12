@@ -22,9 +22,6 @@
       mkdir input output
 ```
 
-<br/>
-![image](https://github.com/user-attachments/assets/4c781616-c978-49d3-bf89-9ad229d7eb38)
-
 ## Rodar Projeto
 
 ```bash
